@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Домашние десерты с любовью — handmade bakery от домашнего кондитера">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Sweet Atelier — Домашние десерты</title>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="header__inner">
+        <a href="#" class="header__logo" id="brand-name">Sweet Atelier</a>
+        <ul class="nav-desktop" id="nav-desktop"></ul>
+        <a href="#contact" class="btn-primary header__cta">Заказать</a>
+        <button class="burger" id="burger" type="button" aria-label="Меню">
+          <span class="burger__lines">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+      </nav>
+      <nav class="nav-mobile" id="nav-mobile">
+        <ul id="nav-mobile-list"></ul>
+        <a href="#contact" class="btn-primary">Заказать десерт</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__bg">
+        <div class="hero__blob hero__blob--1"></div>
+        <div class="hero__blob hero__blob--2"></div>
+        <div class="hero__blob hero__blob--3"></div>
+      </div>
+      <div class="container hero__content">
+        <span class="hero__badge hero-animate hero-animate--1">
+          <span class="hero__badge-dot"></span>
+          Handmade Bakery
+        </span>
+        <h1 class="hero__title hero-animate hero-animate--2" id="hero-title">Sweet Atelier</h1>
+        <p class="hero__tagline hero-animate hero-animate--3" id="hero-tagline">Домашние десерты с любовью</p>
+        <p class="hero__desc hero-animate hero-animate--4" id="hero-desc">Ручная работа · Натуральные ингредиенты · С душой</p>
+        <div class="hero__actions hero-animate hero-animate--5">
+          <a href="#contact" class="btn-primary">Заказать десерт</a>
+          <a href="#catalog" class="btn-outline">Смотреть каталог</a>
+        </div>
+        <div class="hero__image-wrap hero-animate hero-animate--6">
+          <div class="hero__image">
+            <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=1200&q=80" alt="Домашние десерты">
+          </div>
+          <div class="hero__image-badge">
+            <p>100% ручная работа</p>
+            <p>Свежие ингредиенты каждый день</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section-padding">
+      <div class="container about__grid">
+        <div class="about__image-wrap fade-in fade-in--left">
+          <div class="about__image">
+            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80" alt="Кондитер за работой">
+          </div>
+          <div class="about__stat">
+            <p class="about__stat-num">5+</p>
+            <p class="about__stat-label">лет опыта</p>
+          </div>
+        </div>
+        <div class="fade-in fade-in--right">
+          <span class="section-label section-label--blush">О кондитере</span>
+          <h2 class="section-title">Сладость,<br><span class="italic-accent">созданная вручную</span></h2>
+          <p class="about__text">
+            Каждый десерт — это маленькое произведение искусства. Я готовлю
+            дома, в небольших партиях, уделяя внимание каждой детали: от
+            отбора ингредиентов до последнего штриха декора.
+          </p>
+          <p class="about__text about__text--second">
+            Использую только натуральные продукты — свежие яйца, сливочное
+            масло, настоящий шоколад и сезонные ягоды. Никаких консервантов
+            и искусственных ароматизаторов. Только честный вкус и забота о
+            каждом заказе.
+          </p>
+          <div class="about__features">
+            <div class="card-bakery about__feature">
+              <span class="about__feature-icon">🌿</span>
+              <span class="about__feature-label">Натурально</span>
+            </div>
+            <div class="card-bakery about__feature">
+              <span class="about__feature-icon">✨</span>
+              <span class="about__feature-label">Вручную</span>
+            </div>
+            <div class="card-bakery about__feature">
+              <span class="about__feature-icon">💗</span>
+              <span class="about__feature-label">С любовью</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog -->
+    <section id="catalog" class="section-padding catalog">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-label section-label--mint">Каталог</span>
+          <h2 class="section-title">Наши десерты</h2>
+          <p class="section-subtitle section-subtitle--center">
+            Каждый десерт можно адаптировать под ваши пожелания — размер,
+            декор и начинку обсудим индивидуально
+          </p>
+        </div>
+        <div class="catalog__grid" id="catalog-grid"></div>
+      </div>
+    </section>
+
+    <!-- How to order -->
+    <section id="order" class="section-padding">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-label section-label--blush">Как заказать</span>
+          <h2 class="section-title">Три простых шага</h2>
+          <p class="section-subtitle section-subtitle--center">
+            Заказ через мессенджер или соцсети — быстро, удобно и с
+            персональным подходом
+          </p>
+        </div>
+        <div class="steps" id="steps-grid"></div>
+        <div class="order__cta fade-in">
+          <a href="#contact" class="btn-primary">Написать в мессенджер</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="section-padding reviews">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-label section-label--mint">Отзывы</span>
+          <h2 class="section-title">Что говорят клиенты</h2>
+          <p class="section-subtitle section-subtitle--center">
+            Каждый отзыв — лучшая награда за труд и вдохновение продолжать творить
+          </p>
+        </div>
+        <div class="reviews__grid" id="reviews-grid"></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section-padding">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-label section-label--blush">Контакты</span>
+          <h2 class="section-title">Свяжитесь с нами</h2>
+          <p class="section-subtitle section-subtitle--center">
+            Напишите в удобный мессенджер или оставьте сообщение — отвечу в течение дня
+          </p>
+        </div>
+        <div class="contact__grid">
+          <div class="card-bakery contact-card fade-in fade-in--left">
+            <h3 class="contact-card__title">Мессенджеры</h3>
+            <p class="contact-card__desc">Самый быстрый способ заказать — написать напрямую</p>
+            <div class="social-links" id="social-links"></div>
+          </div>
+          <div class="card-bakery contact-card fade-in fade-in--right">
+            <h3 class="contact-card__title">Написать сообщение</h3>
+            <p class="contact-card__desc">Опишите желаемый десерт и мы обсудим детали</p>
+            <form class="form" id="contact-form">
+              <div class="form-group">
+                <label for="name">Ваше имя</label>
+                <input type="text" id="name" name="name" required placeholder="Как к вам обращаться?">
+              </div>
+              <div class="form-group">
+                <label for="message">Сообщение</label>
+                <textarea id="message" name="message" required placeholder="Какой десерт вас интересует?"></textarea>
+              </div>
+              <button type="submit" class="btn-primary btn-primary--full">Отправить</button>
+            </form>
+            <div class="form-success" id="form-success" hidden>
+              <p class="form-success__title">Спасибо!</p>
+              <p class="form-success__text">Ваше сообщение отправлено. Скоро свяжусь с вами.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <p class="footer__name" id="footer-brand-name">Sweet Atelier</p>
+          <p class="footer__tagline" id="footer-tagline">Домашние десерты с любовью</p>
+        </div>
+        <nav class="footer__nav">
+          <ul id="footer-nav"></ul>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span id="footer-year"></span> <span id="footer-brand-copy">Sweet Atelier</span>. Все права защищены.</p>
+        <p>Сделано с любовью и мукой ✨</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
