@@ -1,6 +1,15 @@
+// Фото лежат в папке images/
+// Чтобы заменить — положите свой файл с тем же именем (jpg, png или webp)
+// и обновите путь в поле image ниже.
+
 const SITE_DATA = {
+  images: {
+    hero: 'images/главная 1.jpg',
+    about: 'images/главная.jpg',
+  },
+
   brand: {
-    name: 'Sweet Atelier',
+    name: 'Изюмка С',
     tagline: 'Домашние десерты с любовью',
     description: 'Ручная работа · Натуральные ингредиенты · С душой',
   },
@@ -18,37 +27,37 @@ const SITE_DATA = {
       name: 'Медовик классический',
       description: 'Нежные коржи с кремом на сгущёнке и мёде',
       price: '1 200 ₽',
-      image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80',
+      image: 'images/медовик.jpg',
     },
     {
-      name: 'Тирамису',
-      description: 'Итальянская классика с маскарпоне и эспрессо',
+      name: 'Бенто-торт',
+      description: 'Маленький торт для двоих',
       price: '950 ₽',
-      image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=600&q=80',
+      image: 'images/бенто-торт.jpg',
     },
     {
-      name: 'Эклеры ассорти',
-      description: 'Три вкуса: ваниль, шоколад, фисташка',
+      name: 'Печенье с мин',
+      description: 'Печенье с миндалем и шоколадом',
       price: '680 ₽',
-      image: 'https://images.unsplash.com/photo-1612203985729-e72efa58ba0b?w=600&q=80',
+      image: 'images/печенье.jpg',
     },
     {
-      name: 'Чизкейк Нью-Йорк',
-      description: 'Плотная текстура, ягодный топпинг',
+      name: 'Мотти',
+      description: 'Рисовое тесто, мусс и взрывная начинка',
       price: '1 100 ₽',
-      image: 'https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=600&q=80',
+      image: 'images/моти1.jpg',
     },
     {
       name: 'Макаронс бокс',
       description: '6 штук в подарочной коробке',
       price: '850 ₽',
-      image: 'https://images.unsplash.com/photo-1569860871741-84c49333c3e8?w=600&q=80',
+      image: 'images/макарунс.jpg',
     },
     {
       name: 'Павлова',
       description: 'Хрустящее безе с ягодами и кремом',
       price: '1 350 ₽',
-      image: 'https://images.unsplash.com/photo-1488477181941-781db1a93832?w=600&q=80',
+      image: 'images/павлова.jpg',
     },
   ],
 

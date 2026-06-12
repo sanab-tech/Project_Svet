@@ -16,6 +16,8 @@ function renderNav() {
   document.getElementById('footer-brand-name').textContent = brand.name
   document.getElementById('footer-brand-copy').textContent = brand.name
   document.getElementById('footer-tagline').textContent = brand.tagline
+  document.getElementById('hero-image').src = SITE_DATA.images.hero
+  document.getElementById('about-image').src = SITE_DATA.images.about
   document.getElementById('hero-title').textContent = brand.name
   document.getElementById('hero-tagline').textContent = brand.tagline
   document.getElementById('hero-desc').textContent = brand.description
