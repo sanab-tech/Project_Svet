@@ -31,7 +31,7 @@ function renderAbout() {
 }
 
 function renderNav() {
-  const { brand, navLinks } = SITE_DATA
+  const { brand } = SITE_DATA
 
   document.getElementById('brand-name').textContent = brand.name
   document.getElementById('footer-brand-name').textContent = brand.name
