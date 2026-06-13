@@ -56,7 +56,7 @@
         </div>
         <div class="hero__image-wrap hero-animate hero-animate--6">
           <div class="hero__image">
-            <img src="images/hero.svg" alt="Домашние десерты" id="hero-image">
+            <img src="images/главная 1.jpg" alt="Домашние десерты Изюмка С" id="hero-image">
           </div>
           <div class="hero__image-badge">
             <p>100% ручная работа</p>
@@ -71,42 +71,14 @@
       <div class="container about__grid">
         <div class="about__image-wrap fade-in fade-in--left">
           <div class="about__image">
-            <img src="images/about.svg" alt="Кондитер за работой" id="about-image">
+            <img src="images/главная%202.jpg" alt="Светлана — кондитер Изюмка С" id="about-image">
           </div>
           <div class="about__stat">
-            <p class="about__stat-num">5+</p>
-            <p class="about__stat-label">лет опыта</p>
+            <p class="about__stat-num" id="about-stat-num">10+</p>
+            <p class="about__stat-label" id="about-stat-label">лет опыта</p>
           </div>
         </div>
-        <div class="fade-in fade-in--right">
-          <span class="section-label section-label--blush">О кондитере</span>
-          <h2 class="section-title">Сладость,<br><span class="italic-accent">созданная вручную</span></h2>
-          <p class="about__text">
-            Каждый десерт — это маленькое произведение искусства. Я готовлю
-            дома, в небольших партиях, уделяя внимание каждой детали: от
-            отбора ингредиентов до последнего штриха декора.
-          </p>
-          <p class="about__text about__text--second">
-            Использую только натуральные продукты — свежие яйца, сливочное
-            масло, настоящий шоколад и сезонные ягоды. Никаких консервантов
-            и искусственных ароматизаторов. Только честный вкус и забота о
-            каждом заказе.
-          </p>
-          <div class="about__features">
-            <div class="card-bakery about__feature">
-              <span class="about__feature-icon">🌿</span>
-              <span class="about__feature-label">Натурально</span>
-            </div>
-            <div class="card-bakery about__feature">
-              <span class="about__feature-icon">✨</span>
-              <span class="about__feature-label">Вручную</span>
-            </div>
-            <div class="card-bakery about__feature">
-              <span class="about__feature-icon">💗</span>
-              <span class="about__feature-label">С любовью</span>
-            </div>
-          </div>
-        </div>
+        <div class="fade-in fade-in--right" id="about-content"></div>
       </div>
     </section>
 
@@ -132,13 +104,13 @@
           <span class="section-label section-label--blush">Как заказать</span>
           <h2 class="section-title">Три простых шага</h2>
           <p class="section-subtitle section-subtitle--center">
-            Заказ через мессенджер или соцсети — быстро, удобно и с
+            Заказ через группу ВКонтакте — быстро, удобно и с
             персональным подходом
           </p>
         </div>
         <div class="steps" id="steps-grid"></div>
         <div class="order__cta fade-in">
-          <a href="#contact" class="btn-primary">Написать в мессенджер</a>
+          <a href="https://vk.com/club227827448" class="btn-primary" target="_blank" rel="noopener noreferrer">Написать в ВКонтакте</a>
         </div>
       </div>
     </section>
@@ -162,20 +134,20 @@
       <div class="container">
         <div class="section-header fade-in">
           <span class="section-label section-label--blush">Контакты</span>
-          <h2 class="section-title">Свяжитесь с нами</h2>
+          <h2 class="section-title">Свяжитесь со мной</h2>
           <p class="section-subtitle section-subtitle--center">
-            Напишите в удобный мессенджер или оставьте сообщение — отвечу в течение дня
+            Напишите в группу ВКонтакте или оставьте сообщение — отвечу в течение дня
           </p>
         </div>
         <div class="contact__grid">
           <div class="card-bakery contact-card fade-in fade-in--left">
-            <h3 class="contact-card__title">Мессенджеры</h3>
-            <p class="contact-card__desc">Самый быстрый способ заказать — написать напрямую</p>
+            <h3 class="contact-card__title">ВКонтакте</h3>
+            <p class="contact-card__desc">Переходите в нашу группу — там можно посмотреть работы и написать напрямую</p>
             <div class="social-links" id="social-links"></div>
           </div>
           <div class="card-bakery contact-card fade-in fade-in--right">
             <h3 class="contact-card__title">Написать сообщение</h3>
-            <p class="contact-card__desc">Опишите желаемый десерт и мы обсудим детали</p>
+            <p class="contact-card__desc">Заполните форму — откроется диалог с группой ВКонтакте, останется нажать «Отправить»</p>
             <form class="form" id="contact-form">
               <div class="form-group">
                 <label for="name">Ваше имя</label>
@@ -185,11 +157,11 @@
                 <label for="message">Сообщение</label>
                 <textarea id="message" name="message" required placeholder="Какой десерт вас интересует?"></textarea>
               </div>
-              <button type="submit" class="btn-primary btn-primary--full">Отправить</button>
+              <button type="submit" class="btn-primary btn-primary--full">Отправить в ВКонтакте</button>
             </form>
             <div class="form-success" id="form-success" hidden>
-              <p class="form-success__title">Спасибо!</p>
-              <p class="form-success__text">Ваше сообщение отправлено. Скоро свяжусь с вами.</p>
+              <p class="form-success__title">Открываем ВКонтакте</p>
+              <p class="form-success__text">Сообщение скопировано — вставьте его в чат группы и нажмите «Отправить».</p>
             </div>
           </div>
         </div>
