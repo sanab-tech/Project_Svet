@@ -66,10 +66,20 @@ function renderReviews() {
     .join('')
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  renderAbout()
-  renderFeatured()
-  renderSteps()
-  renderReviews()
-  observeFadeIns()
-})
+function bootHome() {
+  try {
+    renderAbout()
+    renderFeatured()
+    renderSteps()
+    renderReviews()
+    observeFadeIns()
+  } catch (err) {
+    console.error('Ошибка главной страницы:', err)
+  }
+}
+
+if (typeof onReady === 'function') {
+  onReady(bootHome)
+} else {
+  document.addEventListener('DOMContentLoaded', bootHome)
+}

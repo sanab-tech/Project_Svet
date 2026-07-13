@@ -18,7 +18,38 @@
   <title>Изюмка С — Домашние десерты с любовью</title>
 </head>
 <body>
-  <header class="header" id="site-header"></header>
+  <header class="header" id="site-header">
+    <div class="container">
+      <nav class="header__inner" aria-label="Основная навигация">
+        <a href="index.html" class="header__logo">Изюмка С</a>
+        <ul class="nav-desktop">
+          <li><a href="index.html" class="is-active">Главная</a></li>
+          <li><a href="catalog.html">Каталог</a></li>
+          <li><a href="delivery.html">Доставка</a></li>
+        </ul>
+        <div class="header__actions">
+          <a href="cart.html" class="header__cart" aria-label="Корзина">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2 8h14M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"/></svg>
+            <span class="header__cart-count" id="cart-count" hidden>0</span>
+          </a>
+          <a href="catalog.html" class="btn-primary header__cta">В каталог</a>
+          <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-mobile">
+            <span class="burger__lines" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+        </div>
+      </nav>
+      <nav class="nav-mobile" id="nav-mobile" aria-label="Мобильное меню">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="catalog.html">Каталог</a></li>
+          <li><a href="delivery.html">Доставка</a></li>
+          <li><a href="cart.html">Корзина</a></li>
+          <li><a href="admin.html">Админка</a></li>
+        </ul>
+        <a href="catalog.html" class="btn-primary">Смотреть каталог</a>
+      </nav>
+    </div>
+  </header>
 
   <main>
     <section class="hero" aria-labelledby="hero-title">
@@ -97,11 +128,32 @@
     </section>
   </main>
 
-  <footer class="footer" id="site-footer"></footer>
+  <footer class="footer" id="site-footer">
+    <div class="container footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <p class="footer__name">Изюмка С</p>
+          <p class="footer__tagline">Домашние десерты с любовью</p>
+        </div>
+        <nav class="footer__nav" aria-label="Навигация в подвале">
+          <ul>
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="delivery.html">Доставка</a></li>
+            <li><a href="privacy.html">Политика конфиденциальности</a></li>
+            <li><a href="offer.html">Публичная оферта</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2026 Изюмка С. Все права защищены.</p>
+        <p><a href="admin.html" class="footer__admin-link">Админка</a></p>
+      </div>
+    </div>
+  </footer>
 
-  <script src="js/data.js"></script>
-  <script src="js/store.js"></script>
-  <script src="js/layout.js"></script>
-  <script src="js/home.js"></script>
+  <script src="js/data.js" charset="utf-8"></script>
+  <script src="js/store.js" charset="utf-8"></script>
+  <script src="js/layout.js" charset="utf-8"></script>
+  <script src="js/home.js" charset="utf-8"></script>
 </body>
 </html>
