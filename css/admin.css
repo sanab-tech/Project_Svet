@@ -14,6 +14,11 @@
   padding: 1.5rem;
 }
 
+.admin-login[hidden],
+.admin-app[hidden] {
+  display: none !important;
+}
+
 .admin-login__card {
   width: 100%;
   max-width: 26rem;
