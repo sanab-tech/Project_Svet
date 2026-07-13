@@ -193,7 +193,7 @@
 
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault()
-    if (Store.login(loginForm.password.value)) {
+    if (Store.login(loginForm.email.value, loginForm.password.value)) {
       loginError.hidden = true
       loginForm.reset()
       showApp(true)

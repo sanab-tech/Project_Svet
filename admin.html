@@ -22,10 +22,14 @@
       <p class="admin-login__hint">Заказы и полное управление ассортиментом</p>
       <form id="login-form" class="form">
         <div class="form-group">
+          <label for="admin-email">Email</label>
+          <input type="email" id="admin-email" name="email" required autocomplete="username" placeholder="admin@admin.com">
+        </div>
+        <div class="form-group">
           <label for="admin-password">Пароль</label>
           <input type="password" id="admin-password" name="password" required autocomplete="current-password" placeholder="Введите пароль">
         </div>
-        <p class="admin-login__error" id="login-error" hidden role="alert">Неверный пароль</p>
+        <p class="admin-login__error" id="login-error" hidden role="alert">Неверный email или пароль</p>
         <button type="submit" class="btn-primary btn-primary--full">Войти</button>
       </form>
       <a href="index.html" class="admin-login__back">← На сайт</a>

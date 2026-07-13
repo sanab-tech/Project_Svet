@@ -10,7 +10,10 @@ const Store = (() => {
     auth: 'izyumka_admin_auth',
   }
 
-  const ADMIN_PASSWORD = 'izyumka'
+  const ADMIN = {
+    email: 'admin@admin.com',
+    password: '147258369',
+  }
 
   const ORDER_STATUSES = {
     new: { label: 'Новый', color: 'blush' },
@@ -261,8 +264,9 @@ const Store = (() => {
     return read(KEYS.auth, false) === true
   }
 
-  function login(password) {
-    if (String(password) === ADMIN_PASSWORD) {
+  function login(email, password) {
+    const normalizedEmail = String(email || '').trim().toLowerCase()
+    if (normalizedEmail === ADMIN.email && String(password) === ADMIN.password) {
       write(KEYS.auth, true)
       return true
     }
