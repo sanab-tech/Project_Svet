@@ -3,60 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Изюмка С — домашняя кондитерская. Десерты из натуральных продуктов, ручная работа, самовывоз.">
+  <meta name="description" content="Изюмка С — домашняя кондитерская. Десерты из натуральных продуктов, ручная работа, самовывоз и доставка.">
   <meta name="theme-color" content="#fdf8f5">
-
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:title" content="Изюмка С — Домашние десерты с любовью">
   <meta property="og:description" content="Домашняя кондитерская: медовик, бенто-торты, моти, макаронс и другие десерты с душой.">
   <meta property="og:image" content="images/hero-desserts.jpg">
-  <meta property="og:url" content="https://vk.com/club227827448">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Изюмка С — Домашние десерты с любовью">
-  <meta name="twitter:description" content="Домашняя кондитерская: натуральные ингредиенты, ручная работа, самовывоз.">
-  <meta name="twitter:image" content="images/hero-desserts.jpg">
-
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <title>Изюмка С — Домашние десерты с любовью</title>
-
-  <script type="application/ld+json" id="schema-json"></script>
 </head>
 <body>
+  <header class="header" id="site-header"></header>
 
-  <header class="header">
-    <div class="container">
-      <nav class="header__inner" aria-label="Основная навигация">
-        <a href="#" class="header__logo" id="brand-name">Изюмка С</a>
-        <ul class="nav-desktop" id="nav-desktop"></ul>
-        <a href="#contact" class="btn-primary header__cta">Заказать</a>
-        <button
-          class="burger"
-          id="burger"
-          type="button"
-          aria-label="Открыть меню"
-          aria-expanded="false"
-          aria-controls="nav-mobile"
-        >
-          <span class="burger__lines" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </span>
-        </button>
-      </nav>
-      <nav class="nav-mobile" id="nav-mobile" aria-label="Мобильное меню">
-        <ul id="nav-mobile-list"></ul>
-        <a href="#contact" class="btn-primary">Заказать десерт</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main-content">
-
+  <main>
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero__bg" aria-hidden="true">
         <div class="hero__blob hero__blob--1"></div>
@@ -70,26 +34,14 @@
         </span>
         <h1 class="hero__title hero-animate hero-animate--2" id="hero-title">Изюмка С</h1>
         <p class="hero__tagline hero-animate hero-animate--3" id="hero-tagline">Домашние десерты с любовью</p>
-        <p class="hero__desc hero-animate hero-animate--4" id="hero-desc">Готовлю десерты из натуральных продуктов, с любовью и вниманием к деталям. Без спешки, без сухих смесей — только настоящее удовольствие от вкуса.</p>
+        <p class="hero__desc hero-animate hero-animate--4" id="hero-desc"></p>
         <div class="hero__actions hero-animate hero-animate--5">
-          <a href="#contact" class="btn-primary">Заказать десерт</a>
-          <a href="#catalog" class="btn-outline">Смотреть каталог</a>
+          <a href="catalog.html" class="btn-primary">Смотреть каталог</a>
+          <a href="delivery.html" class="btn-outline">Доставка и самовывоз</a>
         </div>
         <div class="hero__image-wrap hero-animate hero-animate--6">
           <div class="hero__image">
-            <img
-              src="images/hero-desserts.jpg"
-              alt="Домашние десерты Изюмка С"
-              id="hero-image"
-              width="1200"
-              height="750"
-              fetchpriority="high"
-              decoding="async"
-            >
-          </div>
-          <div class="hero__image-badge">
-            <p>100% ручная работа</p>
-            <p>Свежие ингредиенты каждый день</p>
+            <img src="images/hero-desserts.jpg" alt="Домашние десерты Изюмка С" id="hero-image" width="1200" height="750" fetchpriority="high" decoding="async">
           </div>
         </div>
       </div>
@@ -99,15 +51,7 @@
       <div class="container about__grid">
         <div class="about__image-wrap fade-in fade-in--left">
           <div class="about__image">
-            <img
-              src="images/confectioner.jpg"
-              alt="Светлана — кондитер Изюмка С"
-              id="about-image"
-              width="800"
-              height="1000"
-              loading="lazy"
-              decoding="async"
-            >
+            <img src="images/confectioner.jpg" alt="Светлана — кондитер Изюмка С" id="about-image" width="800" height="1000" loading="lazy" decoding="async">
           </div>
           <div class="about__stat">
             <p class="about__stat-num" id="about-stat-num">10+</p>
@@ -118,34 +62,27 @@
       </div>
     </section>
 
-    <section id="catalog" class="section-padding catalog" aria-labelledby="catalog-heading">
+    <section class="section-padding catalog" aria-labelledby="featured-heading">
       <div class="container">
         <div class="section-header fade-in">
-          <span class="section-label section-label--mint">Каталог</span>
-          <h2 class="section-title" id="catalog-heading">Наши десерты</h2>
-          <p class="section-subtitle section-subtitle--center">
-            Каждый десерт можно адаптировать под ваши пожелания — размер,
-            декор и начинку обсудим индивидуально
-          </p>
+          <span class="section-label section-label--mint">Ассортимент</span>
+          <h2 class="section-title" id="featured-heading">Популярные десерты</h2>
+          <p class="section-subtitle section-subtitle--center">Выберите вкус и оформите заказ в корзине</p>
         </div>
-        <div class="catalog__grid" id="catalog-grid"></div>
+        <div class="product-grid" id="featured-grid"></div>
+        <div class="order__cta fade-in">
+          <a href="catalog.html" class="btn-primary">Весь каталог</a>
+        </div>
       </div>
     </section>
 
-    <section id="order" class="section-padding" aria-labelledby="order-heading">
+    <section class="section-padding" aria-labelledby="order-heading">
       <div class="container">
         <div class="section-header fade-in">
           <span class="section-label section-label--blush">Как заказать</span>
           <h2 class="section-title" id="order-heading">Три простых шага</h2>
-          <p class="section-subtitle section-subtitle--center">
-            Заказ через группу ВКонтакте — быстро, удобно и с
-            персональным подходом
-          </p>
         </div>
         <div class="steps" id="steps-grid"></div>
-        <div class="order__cta fade-in">
-          <a href="https://vk.com/club227827448" class="btn-primary" target="_blank" rel="noopener noreferrer">Написать в ВКонтакте</a>
-        </div>
       </div>
     </section>
 
@@ -154,117 +91,17 @@
         <div class="section-header fade-in">
           <span class="section-label section-label--mint">Отзывы</span>
           <h2 class="section-title" id="reviews-heading">Что говорят клиенты</h2>
-          <p class="section-subtitle section-subtitle--center">
-            Каждый отзыв — лучшая награда за труд и вдохновение продолжать творить
-          </p>
         </div>
         <div class="reviews__grid" id="reviews-grid"></div>
       </div>
     </section>
-
-    <section id="contact" class="section-padding" aria-labelledby="contact-heading">
-      <div class="container">
-        <div class="section-header fade-in">
-          <span class="section-label section-label--blush">Контакты</span>
-          <h2 class="section-title" id="contact-heading">Свяжитесь со мной</h2>
-          <p class="section-subtitle section-subtitle--center">
-            Напишите в группу ВКонтакте или оставьте сообщение — отвечу в течение дня
-          </p>
-        </div>
-        <div class="contact__grid">
-          <div class="card-bakery contact-card fade-in fade-in--left">
-            <h3 class="contact-card__title">ВКонтакте</h3>
-            <p class="contact-card__desc">Переходите в нашу группу — там можно посмотреть работы и написать напрямую</p>
-            <div class="social-links" id="social-links"></div>
-          </div>
-          <div class="card-bakery contact-card fade-in fade-in--right">
-            <h3 class="contact-card__title">Написать сообщение</h3>
-            <p class="contact-card__desc">Заполните форму — откроется диалог с группой ВКонтакте</p>
-
-            <div class="form-feedback" id="form-feedback" hidden role="status" aria-live="polite"></div>
-
-            <form class="form" id="contact-form">
-              <div class="form-group">
-                <label for="name">Ваше имя</label>
-                <input type="text" id="name" name="name" required autocomplete="name" placeholder="Как к вам обращаться?">
-              </div>
-              <div class="form-group">
-                <label for="message">Сообщение</label>
-                <textarea id="message" name="message" required placeholder="Какой десерт вас интересует?"></textarea>
-              </div>
-              <button type="submit" class="btn-primary btn-primary--full">Отправить в ВКонтакте</button>
-            </form>
-
-            <div class="form-fallback" id="form-fallback" hidden>
-              <label for="form-fallback-text">Текст для копирования</label>
-              <textarea id="form-fallback-text" readonly rows="5"></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
   </main>
 
-  <footer class="footer">
-    <div class="container footer__inner">
-      <div class="footer__top">
-        <div class="footer__brand">
-          <p class="footer__name" id="footer-brand-name">Изюмка С</p>
-          <p class="footer__tagline" id="footer-tagline">Домашние десерты с любовью</p>
-        </div>
-        <nav class="footer__nav" aria-label="Навигация в подвале">
-          <ul id="footer-nav"></ul>
-        </nav>
-      </div>
-      <div class="footer__bottom">
-        <p>© <span id="footer-year"></span> <span id="footer-brand-copy">Изюмка С</span>. Все права защищены.</p>
-        <p>Сделано с любовью и мукой ✨</p>
-      </div>
-    </div>
-  </footer>
-
-  <div class="order-modal" id="order-modal" hidden>
-    <div class="order-modal__backdrop" data-close-modal></div>
-    <div class="order-modal__dialog card-bakery" role="dialog" aria-modal="true" aria-labelledby="order-modal-title">
-      <button type="button" class="order-modal__close" data-close-modal aria-label="Закрыть">×</button>
-      <h2 class="order-modal__title" id="order-modal-title">Оформить заказ</h2>
-      <p class="order-modal__desc" id="order-modal-desc">Заполните данные — заказ появится в админке</p>
-
-      <form class="form" id="order-form">
-        <input type="hidden" id="order-dessert-id" name="dessertId">
-        <div class="form-group">
-          <label for="order-dessert-name">Десерт</label>
-          <input type="text" id="order-dessert-name" name="dessertName" readonly>
-        </div>
-        <div class="form-group">
-          <label for="order-quantity">Количество</label>
-          <input type="number" id="order-quantity" name="quantity" min="1" max="20" value="1" required>
-        </div>
-        <div class="form-group">
-          <label for="order-customer-name">Ваше имя</label>
-          <input type="text" id="order-customer-name" name="customerName" required autocomplete="name" placeholder="Как к вам обращаться?">
-        </div>
-        <div class="form-group">
-          <label for="order-phone">Телефон</label>
-          <input type="tel" id="order-phone" name="phone" required autocomplete="tel" placeholder="+7 (999) 000-00-00">
-        </div>
-        <div class="form-group">
-          <label for="order-comment">Пожелания</label>
-          <textarea id="order-comment" name="comment" rows="3" placeholder="Дата, декор, начинка…"></textarea>
-        </div>
-        <button type="submit" class="btn-primary btn-primary--full">Отправить заказ</button>
-      </form>
-
-      <div class="form-feedback form-feedback--success" id="order-success" hidden role="status" aria-live="polite">
-        <p class="form-feedback__title">Заказ принят</p>
-        <p class="form-feedback__text">Мы получили ваш заказ и скоро свяжемся с вами для уточнения деталей.</p>
-      </div>
-    </div>
-  </div>
+  <footer class="footer" id="site-footer"></footer>
 
   <script src="js/data.js"></script>
   <script src="js/store.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/home.js"></script>
 </body>
 </html>

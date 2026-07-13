@@ -50,6 +50,10 @@
     }
   }
 
+  function deliveryLabel(method) {
+    return method === 'delivery' ? 'Доставка' : 'Самовывоз'
+  }
+
   function setTab(tab) {
     document.querySelectorAll('.admin-tab').forEach((btn) => {
       btn.classList.toggle('is-active', btn.dataset.tab === tab)
@@ -72,7 +76,10 @@
       .map((order) => {
         const statusMeta = Store.ORDER_STATUSES[order.status] || Store.ORDER_STATUSES.new
         const itemsHtml = (order.items || [])
-          .map((item) => `<li>${escapeHtml(item.name)} × ${item.quantity} — ${escapeHtml(item.price)}</li>`)
+          .map((item) => {
+            const price = item.priceValue != null ? Store.formatPrice(item.priceValue) : escapeHtml(item.price || '')
+            return `<li>${escapeHtml(item.name)} × ${item.quantity} — ${price}</li>`
+          })
           .join('')
         const statusOptions = Object.entries(Store.ORDER_STATUSES)
           .map(
@@ -89,10 +96,16 @@
                 <p class="admin-order__meta">
                   ${formatDate(order.createdAt)}
                   ${order.phone ? ` · <a href="tel:${escapeHtml(order.phone)}">${escapeHtml(order.phone)}</a>` : ''}
+                  ${order.email ? ` · ${escapeHtml(order.email)}` : ''}
                 </p>
               </div>
               <span class="admin-status admin-status--${statusMeta.color}">${statusMeta.label}</span>
             </div>
+            <p class="admin-order__meta" style="margin-top:0.75rem">
+              ${deliveryLabel(order.deliveryMethod)}
+              ${order.address ? ` · ${escapeHtml(order.address)}` : ''}
+              ${order.total != null ? ` · Итого: ${Store.formatPrice(order.total)}` : ''}
+            </p>
             <ul class="admin-order__items">${itemsHtml || '<li>Без позиций</li>'}</ul>
             ${order.comment ? `<p class="admin-order__comment"><strong>Комментарий:</strong> ${escapeHtml(order.comment)}</p>` : ''}
             <div class="admin-order__actions">
@@ -109,7 +122,7 @@
   }
 
   function renderCatalog() {
-    const desserts = Store.getDesserts()
+    const desserts = Store.getProducts()
     catalogEmpty.hidden = desserts.length > 0
     catalogList.innerHTML = desserts
       .map(
@@ -120,8 +133,9 @@
           </div>
           <div>
             <h3 class="admin-dessert__title">${escapeHtml(d.name)}</h3>
-            <p class="admin-dessert__price">${escapeHtml(d.price)}</p>
-            <p class="admin-dessert__desc">${escapeHtml(d.description)}</p>
+            <p class="admin-dessert__price">${Store.formatPrice(d.price)} · ${escapeHtml(d.category)}</p>
+            <p class="admin-dessert__desc">${escapeHtml(d.shortDescription)}</p>
+            <p class="admin-dessert__desc">${d.inStock ? 'В наличии' : 'Под заказ'}${d.weight ? ` · ${escapeHtml(d.weight)}` : ''}</p>
             <div class="admin-dessert__actions">
               <button type="button" class="btn-outline" data-action="edit">Редактировать</button>
               <button type="button" class="admin-btn-danger" data-action="delete">Удалить</button>
@@ -136,7 +150,8 @@
   function resetDessertForm() {
     dessertForm.reset()
     document.getElementById('dessert-id').value = ''
-    document.getElementById('dessert-form-title').textContent = 'Новый десерт'
+    document.getElementById('dessert-form-title').textContent = 'Новый товар'
+    document.getElementById('dessert-stock').value = 'true'
     pendingImageDataUrl = ''
     dessertPreview.hidden = true
     dessertPreviewImg.src = ''
@@ -146,11 +161,16 @@
   function openDessertForm(dessert) {
     dessertForm.hidden = false
     if (dessert) {
-      document.getElementById('dessert-form-title').textContent = 'Редактировать десерт'
+      document.getElementById('dessert-form-title').textContent = 'Редактировать товар'
       document.getElementById('dessert-id').value = dessert.id
       document.getElementById('dessert-name').value = dessert.name
       document.getElementById('dessert-price').value = dessert.price
+      document.getElementById('dessert-category').value = dessert.category
+      document.getElementById('dessert-weight').value = dessert.weight || ''
+      document.getElementById('dessert-short').value = dessert.shortDescription || ''
       document.getElementById('dessert-description').value = dessert.description || ''
+      document.getElementById('dessert-ingredients').value = dessert.ingredients || ''
+      document.getElementById('dessert-stock').value = dessert.inStock ? 'true' : 'false'
       document.getElementById('dessert-image').value = dessert.image.startsWith('data:') ? '' : dessert.image
       pendingImageDataUrl = dessert.image.startsWith('data:') ? dessert.image : ''
       dessertPreview.hidden = false
@@ -173,8 +193,7 @@
 
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault()
-    const password = loginForm.password.value
-    if (Store.login(password)) {
+    if (Store.login(loginForm.password.value)) {
       loginError.hidden = true
       loginForm.reset()
       showApp(true)
@@ -247,11 +266,16 @@
     const pathOrUrl = document.getElementById('dessert-image').value.trim()
     const image = pendingImageDataUrl || pathOrUrl || 'images/hero-desserts.jpg'
 
-    Store.upsertDessert({
+    Store.upsertProduct({
       id: document.getElementById('dessert-id').value || undefined,
       name: document.getElementById('dessert-name').value,
       price: document.getElementById('dessert-price').value,
+      category: document.getElementById('dessert-category').value,
+      weight: document.getElementById('dessert-weight').value,
+      shortDescription: document.getElementById('dessert-short').value,
       description: document.getElementById('dessert-description').value,
+      ingredients: document.getElementById('dessert-ingredients').value,
+      inStock: document.getElementById('dessert-stock').value === 'true',
       image,
     })
 
@@ -267,23 +291,23 @@
     const action = e.target.closest('[data-action]')?.dataset.action
 
     if (action === 'edit') {
-      const dessert = Store.getDesserts().find((d) => d.id === id)
+      const dessert = Store.getProductById(id)
       if (dessert) openDessertForm(dessert)
     }
 
     if (action === 'delete') {
-      if (confirm('Удалить десерт из каталога?')) {
-        Store.deleteDessert(id)
+      if (confirm('Удалить товар из ассортимента?')) {
+        Store.deleteProduct(id)
         renderCatalog()
       }
     }
   })
 
-  // Скрытый класс для a11y, если его ещё нет в styles.css
   if (!document.getElementById('admin-a11y-style')) {
     const style = document.createElement('style')
     style.id = 'admin-a11y-style'
-    style.textContent = '.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}'
+    style.textContent =
+      '.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}'
     document.head.appendChild(style)
   }
 

@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/admin.css">
-  <title>Админка — Изюмка С</title>
+  <title>Админ-панель — Изюмка С</title>
 </head>
 <body class="admin-body">
 
@@ -19,7 +19,7 @@
     <div class="admin-login__card card-bakery">
       <p class="admin-login__brand">Изюмка С</p>
       <h1 class="admin-login__title">Вход в админку</h1>
-      <p class="admin-login__hint">Управление заказами и каталогом десертов</p>
+      <p class="admin-login__hint">Заказы и полное управление ассортиментом</p>
       <form id="login-form" class="form">
         <div class="form-group">
           <label for="admin-password">Пароль</label>
@@ -46,7 +46,7 @@
       </div>
       <nav class="admin-tabs" aria-label="Разделы админки">
         <button type="button" class="admin-tab is-active" data-tab="orders">Заказы <span class="admin-tab__badge" id="orders-badge">0</span></button>
-        <button type="button" class="admin-tab" data-tab="catalog">Каталог</button>
+        <button type="button" class="admin-tab" data-tab="catalog">Ассортимент</button>
       </nav>
     </header>
 
@@ -64,17 +64,17 @@
           </div>
         </div>
         <div id="orders-list" class="admin-orders"></div>
-        <p class="admin-empty" id="orders-empty" hidden>Заказов пока нет — они появятся, когда клиент оформит заказ на сайте.</p>
+        <p class="admin-empty" id="orders-empty" hidden>Заказов пока нет — они появятся из корзины на сайте.</p>
       </section>
 
       <section id="panel-catalog" class="admin-panel" hidden aria-labelledby="catalog-admin-heading">
         <div class="admin-panel__head">
-          <h2 id="catalog-admin-heading">Каталог десертов</h2>
-          <button type="button" class="btn-primary admin-btn-sm" id="dessert-add-btn">+ Добавить десерт</button>
+          <h2 id="catalog-admin-heading">Ассортимент магазина</h2>
+          <button type="button" class="btn-primary admin-btn-sm" id="dessert-add-btn">+ Добавить товар</button>
         </div>
 
         <form id="dessert-form" class="admin-form card-bakery" hidden>
-          <h3 class="admin-form__title" id="dessert-form-title">Новый десерт</h3>
+          <h3 class="admin-form__title" id="dessert-form-title">Новый товар</h3>
           <input type="hidden" id="dessert-id" name="id" value="">
           <div class="admin-form__grid">
             <div class="form-group">
@@ -82,34 +82,57 @@
               <input type="text" id="dessert-name" name="name" required placeholder="Например, Медовик">
             </div>
             <div class="form-group">
-              <label for="dessert-price">Цена</label>
-              <input type="text" id="dessert-price" name="price" required placeholder="1 200 ₽">
+              <label for="dessert-price">Цена (₽)</label>
+              <input type="number" id="dessert-price" name="price" min="0" step="1" required placeholder="1200">
+            </div>
+            <div class="form-group">
+              <label for="dessert-category">Категория</label>
+              <input type="text" id="dessert-category" name="category" required placeholder="Торты">
+            </div>
+            <div class="form-group">
+              <label for="dessert-weight">Вес / объём</label>
+              <input type="text" id="dessert-weight" name="weight" placeholder="1 кг / 6 шт">
             </div>
             <div class="form-group admin-form__full">
-              <label for="dessert-description">Описание</label>
-              <textarea id="dessert-description" name="description" rows="2" placeholder="Короткое описание вкуса и состава"></textarea>
+              <label for="dessert-short">Краткое описание (в каталоге)</label>
+              <input type="text" id="dessert-short" name="shortDescription" required placeholder="Одна строка для карточки">
             </div>
             <div class="form-group admin-form__full">
+              <label for="dessert-description">Полное описание</label>
+              <textarea id="dessert-description" name="description" rows="3" placeholder="Текст на странице товара"></textarea>
+            </div>
+            <div class="form-group admin-form__full">
+              <label for="dessert-ingredients">Состав</label>
+              <input type="text" id="dessert-ingredients" name="ingredients" placeholder="мука, мёд, сливки…">
+            </div>
+            <div class="form-group">
+              <label for="dessert-stock">Наличие</label>
+              <select id="dessert-stock" name="inStock">
+                <option value="true">В наличии</option>
+                <option value="false">Под заказ</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label for="dessert-image">Путь к фото или URL</label>
               <input type="text" id="dessert-image" name="image" placeholder="images/medovik.jpg">
             </div>
             <div class="form-group admin-form__full">
-              <label for="dessert-file">Или загрузить фото с компьютера</label>
+              <label for="dessert-file">Загрузить фото с компьютера</label>
               <input type="file" id="dessert-file" accept="image/*">
-              <p class="admin-form__note">Файл сохранится в браузере (подходит для демо и локальной работы).</p>
+              <p class="admin-form__note">Фото сохранится в браузере вместе с товаром и сразу появится на сайте.</p>
             </div>
             <div class="admin-form__preview" id="dessert-preview" hidden>
-              <img src="" alt="Превью десерта" id="dessert-preview-img">
+              <img src="" alt="Превью товара" id="dessert-preview-img">
             </div>
           </div>
           <div class="admin-form__actions">
-            <button type="submit" class="btn-primary">Сохранить</button>
+            <button type="submit" class="btn-primary">Сохранить товар</button>
             <button type="button" class="btn-outline" id="dessert-cancel-btn">Отмена</button>
           </div>
         </form>
 
         <div id="admin-catalog-list" class="admin-catalog"></div>
-        <p class="admin-empty" id="catalog-empty" hidden>Каталог пуст — добавьте первый десерт.</p>
+        <p class="admin-empty" id="catalog-empty" hidden>Ассортимент пуст — добавьте первый товар.</p>
       </section>
     </main>
   </div>

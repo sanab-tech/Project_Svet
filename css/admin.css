@@ -324,6 +324,18 @@
   margin-bottom: 1rem;
 }
 
+.admin-form select {
+  width: 100%;
+  appearance: none;
+  border: 1.5px solid var(--mint-200);
+  background: #fff;
+  border-radius: 1rem;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--gray-700);
+}
+
 .admin-form__grid {
   display: grid;
   gap: 0 1rem;
