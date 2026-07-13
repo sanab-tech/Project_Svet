@@ -266,18 +266,23 @@
     const pathOrUrl = document.getElementById('dessert-image').value.trim()
     const image = pendingImageDataUrl || pathOrUrl || 'images/hero-desserts.jpg'
 
-    Store.upsertProduct({
-      id: document.getElementById('dessert-id').value || undefined,
-      name: document.getElementById('dessert-name').value,
-      price: document.getElementById('dessert-price').value,
-      category: document.getElementById('dessert-category').value,
-      weight: document.getElementById('dessert-weight').value,
-      shortDescription: document.getElementById('dessert-short').value,
-      description: document.getElementById('dessert-description').value,
-      ingredients: document.getElementById('dessert-ingredients').value,
-      inStock: document.getElementById('dessert-stock').value === 'true',
-      image,
-    })
+    try {
+      Store.upsertProduct({
+        id: document.getElementById('dessert-id').value || undefined,
+        name: document.getElementById('dessert-name').value,
+        price: document.getElementById('dessert-price').value,
+        category: document.getElementById('dessert-category').value,
+        weight: document.getElementById('dessert-weight').value,
+        shortDescription: document.getElementById('dessert-short').value,
+        description: document.getElementById('dessert-description').value,
+        ingredients: document.getElementById('dessert-ingredients').value,
+        inStock: document.getElementById('dessert-stock').value === 'true',
+        image,
+      })
+    } catch (err) {
+      alert('Не удалось сохранить товар. Попробуйте фото меньшего размера.')
+      return
+    }
 
     dessertForm.hidden = true
     resetDessertForm()

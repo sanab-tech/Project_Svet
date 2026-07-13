@@ -38,7 +38,13 @@ const Store = (() => {
   }
 
   function write(key, value) {
-    localStorage.setItem(key, JSON.stringify(value))
+    try {
+      localStorage.setItem(key, JSON.stringify(value))
+      return true
+    } catch (err) {
+      console.error('Не удалось сохранить данные:', err)
+      return false
+    }
   }
 
   function parsePrice(value) {
@@ -139,7 +145,7 @@ const Store = (() => {
 
   function addToCart(productId, quantity = 1) {
     const product = getProductById(productId)
-    if (!product || !product.inStock) return null
+    if (!product) return null
     const cart = getCart()
     const qty = Math.max(1, Number(quantity) || 1)
     const existing = cart.find((item) => item.productId === productId)

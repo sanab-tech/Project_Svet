@@ -1542,6 +1542,13 @@ body.menu-open {
   gap: 1.25rem;
 }
 
+.cart-layout[hidden],
+.cart-empty[hidden],
+.cart-success[hidden],
+#address-group[hidden] {
+  display: none !important;
+}
+
 @media (min-width: 900px) {
   .cart-layout {
     grid-template-columns: 1.4fr 0.9fr;

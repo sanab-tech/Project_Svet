@@ -187,7 +187,8 @@ function bindAddToCart(root) {
     const id = btn.dataset.addToCart
     const qtyInput = document.getElementById('product-qty')
     const qty = qtyInput ? Number(qtyInput.value) || 1 : 1
-    Store.addToCart(id, qty)
+    const result = Store.addToCart(id, qty)
+    if (!result) return
     updateCartBadge()
     const label = btn.dataset.label || 'В корзину'
     btn.textContent = 'Добавлено'
@@ -242,6 +243,7 @@ function initLayout() {
     renderFooter()
     updateCartBadge()
     bindAddToCart()
+    observeFadeIns()
     document.addEventListener('cart:updated', updateCartBadge)
   } catch (err) {
     console.error('Ошибка инициализации layout:', err)

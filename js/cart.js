@@ -79,8 +79,11 @@ function renderCart() {
 
   const delivery = document.getElementById('checkout-delivery')
   const addressGroup = document.getElementById('address-group')
+  const addressInput = document.getElementById('checkout-address')
   delivery.addEventListener('change', () => {
-    addressGroup.hidden = delivery.value !== 'delivery'
+    const needAddress = delivery.value === 'delivery'
+    addressGroup.hidden = !needAddress
+    addressInput.required = needAddress
   })
 
   document.getElementById('checkout-form').addEventListener('submit', (e) => {
