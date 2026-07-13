@@ -1162,6 +1162,17 @@ body.modal-open {
   color: var(--gray-400);
 }
 
+.footer__admin-link {
+  color: var(--gray-400);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition);
+}
+
+.footer__admin-link:hover {
+  color: var(--mint-500);
+}
+
 /* ===== Responsive ===== */
 @media (min-width: 640px) {
   .section-padding { padding: 5rem 2rem; }

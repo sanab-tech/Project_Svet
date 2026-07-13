@@ -85,7 +85,9 @@ function renderFooter() {
       </div>
       <div class="footer__bottom">
         <p>© ${new Date().getFullYear()} ${escapeHtml(SITE_DATA.brand.name)}. Все права защищены.</p>
-        <p>Сделано с любовью и мукой</p>
+        <p>
+          <a href="admin.html" class="footer__admin-link">Админка</a>
+        </p>
       </div>
     </div>
   `
