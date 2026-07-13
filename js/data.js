@@ -47,6 +47,7 @@ const SITE_DATA = {
 
   desserts: [
     {
+      id: 'dessert_1',
       name: 'Медовик классический',
       description: 'Нежные коржи с кремом на сгущёнке и мёде',
       price: '1 200 ₽',
@@ -55,6 +56,7 @@ const SITE_DATA = {
       height: 450,
     },
     {
+      id: 'dessert_2',
       name: 'Бенто-торт',
       description: 'Маленький торт для двоих',
       price: '950 ₽',
@@ -63,6 +65,7 @@ const SITE_DATA = {
       height: 450,
     },
     {
+      id: 'dessert_3',
       name: 'Печенье с миндалем',
       description: 'Нежное печенье с цельным миндалём и посыпкой сахарной пудры',
       price: '680 ₽',
@@ -71,6 +74,7 @@ const SITE_DATA = {
       height: 450,
     },
     {
+      id: 'dessert_4',
       name: 'Моти',
       description: 'Рисовое тесто, нежный мусс и яркая начинка внутри',
       price: '1 100 ₽',
@@ -79,6 +83,7 @@ const SITE_DATA = {
       height: 450,
     },
     {
+      id: 'dessert_5',
       name: 'Макаронс бокс',
       description: '6 штук в подарочной коробке',
       price: '850 ₽',
@@ -87,6 +92,7 @@ const SITE_DATA = {
       height: 450,
     },
     {
+      id: 'dessert_6',
       name: 'Павлова',
       description: 'Хрустящее безе с ягодами и кремом',
       price: '1 350 ₽',

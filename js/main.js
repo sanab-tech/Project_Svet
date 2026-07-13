@@ -44,27 +44,48 @@ function renderNav() {
   document.getElementById('hero-desc').textContent = brand.description
 }
 
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
+function getCatalogDesserts() {
+  return typeof Store !== 'undefined' ? Store.getDesserts() : SITE_DATA.desserts
+}
+
 function renderCatalog() {
   const grid = document.getElementById('catalog-grid')
-  grid.innerHTML = SITE_DATA.desserts
+  const desserts = getCatalogDesserts()
+
+  grid.innerHTML = desserts
     .map((d, i) => `
     <article class="card-bakery catalog-card fade-in" style="transition-delay: ${i * 80}ms">
       <div class="catalog-card__image">
         <img
-          src="${d.image}"
-          alt="${d.name}"
-          width="${d.width}"
-          height="${d.height}"
+          src="${escapeHtml(d.image)}"
+          alt="${escapeHtml(d.name)}"
+          width="${d.width || 600}"
+          height="${d.height || 450}"
           loading="lazy"
           decoding="async"
         >
       </div>
       <div class="catalog-card__body">
         <div class="catalog-card__head">
-          <h3 class="catalog-card__title">${d.name}</h3>
-          <span class="catalog-card__price">${d.price}</span>
+          <h3 class="catalog-card__title">${escapeHtml(d.name)}</h3>
+          <span class="catalog-card__price">${escapeHtml(d.price)}</span>
         </div>
-        <p class="catalog-card__desc">${d.description}</p>
+        <p class="catalog-card__desc">${escapeHtml(d.description)}</p>
+        <button
+          type="button"
+          class="btn-primary catalog-card__order"
+          data-order-dessert="${escapeHtml(d.id)}"
+        >
+          Заказать
+        </button>
       </div>
     </article>
   `)
@@ -290,6 +311,77 @@ function initFooterYear() {
   document.getElementById('footer-year').textContent = new Date().getFullYear()
 }
 
+function initOrderModal() {
+  const modal = document.getElementById('order-modal')
+  const form = document.getElementById('order-form')
+  const success = document.getElementById('order-success')
+  const catalogGrid = document.getElementById('catalog-grid')
+  if (!modal || !form || !catalogGrid) return
+
+  let lastFocus = null
+
+  function openModal(dessert) {
+    lastFocus = document.activeElement
+    form.hidden = false
+    success.hidden = true
+    form.reset()
+    document.getElementById('order-quantity').value = '1'
+    document.getElementById('order-dessert-id').value = dessert.id
+    document.getElementById('order-dessert-name').value = `${dessert.name} — ${dessert.price}`
+    document.getElementById('order-modal-desc').textContent =
+      'Заполните данные — заказ появится в админке для обработки'
+    modal.hidden = false
+    document.body.classList.add('modal-open')
+    document.getElementById('order-customer-name').focus()
+  }
+
+  function closeModal() {
+    modal.hidden = true
+    document.body.classList.remove('modal-open')
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus()
+  }
+
+  catalogGrid.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-order-dessert]')
+    if (!btn) return
+    const dessert = getCatalogDesserts().find((d) => d.id === btn.dataset.orderDessert)
+    if (dessert) openModal(dessert)
+  })
+
+  modal.addEventListener('click', (e) => {
+    if (e.target.closest('[data-close-modal]')) closeModal()
+  })
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hidden) closeModal()
+  })
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const dessertId = document.getElementById('order-dessert-id').value
+    const dessert = getCatalogDesserts().find((d) => d.id === dessertId)
+    if (!dessert || typeof Store === 'undefined') return
+
+    Store.createOrder({
+      customerName: document.getElementById('order-customer-name').value,
+      phone: document.getElementById('order-phone').value,
+      comment: document.getElementById('order-comment').value,
+      items: [
+        {
+          dessertId: dessert.id,
+          name: dessert.name,
+          price: dessert.price,
+          quantity: Number(document.getElementById('order-quantity').value) || 1,
+        },
+      ],
+    })
+
+    form.hidden = true
+    success.hidden = false
+    setTimeout(closeModal, 2200)
+  })
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   renderNav()
   renderAbout()
@@ -301,6 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu()
   observeFadeIns()
   initForm()
+  initOrderModal()
   initSchema()
   initFooterYear()
 })

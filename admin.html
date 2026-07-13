@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#fdf8f5">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <title>Админка — Изюмка С</title>
+</head>
+<body class="admin-body">
+
+  <div id="login-screen" class="admin-login" hidden>
+    <div class="admin-login__card card-bakery">
+      <p class="admin-login__brand">Изюмка С</p>
+      <h1 class="admin-login__title">Вход в админку</h1>
+      <p class="admin-login__hint">Управление заказами и каталогом десертов</p>
+      <form id="login-form" class="form">
+        <div class="form-group">
+          <label for="admin-password">Пароль</label>
+          <input type="password" id="admin-password" name="password" required autocomplete="current-password" placeholder="Введите пароль">
+        </div>
+        <p class="admin-login__error" id="login-error" hidden role="alert">Неверный пароль</p>
+        <button type="submit" class="btn-primary btn-primary--full">Войти</button>
+      </form>
+      <a href="index.html" class="admin-login__back">← На сайт</a>
+    </div>
+  </div>
+
+  <div id="admin-app" class="admin-app" hidden>
+    <header class="admin-header">
+      <div class="admin-header__inner">
+        <div>
+          <p class="admin-header__brand">Изюмка С</p>
+          <h1 class="admin-header__title">Админ-панель</h1>
+        </div>
+        <div class="admin-header__actions">
+          <a href="index.html" class="btn-outline admin-btn-sm">На сайт</a>
+          <button type="button" class="btn-outline admin-btn-sm" id="logout-btn">Выйти</button>
+        </div>
+      </div>
+      <nav class="admin-tabs" aria-label="Разделы админки">
+        <button type="button" class="admin-tab is-active" data-tab="orders">Заказы <span class="admin-tab__badge" id="orders-badge">0</span></button>
+        <button type="button" class="admin-tab" data-tab="catalog">Каталог</button>
+      </nav>
+    </header>
+
+    <main class="admin-main">
+      <section id="panel-orders" class="admin-panel" aria-labelledby="orders-heading">
+        <div class="admin-panel__head">
+          <h2 id="orders-heading">Заказы</h2>
+          <div class="admin-filters" id="order-filters">
+            <button type="button" class="admin-filter is-active" data-filter="all">Все</button>
+            <button type="button" class="admin-filter" data-filter="new">Новые</button>
+            <button type="button" class="admin-filter" data-filter="processing">В работе</button>
+            <button type="button" class="admin-filter" data-filter="ready">Готовы</button>
+            <button type="button" class="admin-filter" data-filter="completed">Выданы</button>
+            <button type="button" class="admin-filter" data-filter="cancelled">Отменены</button>
+          </div>
+        </div>
+        <div id="orders-list" class="admin-orders"></div>
+        <p class="admin-empty" id="orders-empty" hidden>Заказов пока нет — они появятся, когда клиент оформит заказ на сайте.</p>
+      </section>
+
+      <section id="panel-catalog" class="admin-panel" hidden aria-labelledby="catalog-admin-heading">
+        <div class="admin-panel__head">
+          <h2 id="catalog-admin-heading">Каталог десертов</h2>
+          <button type="button" class="btn-primary admin-btn-sm" id="dessert-add-btn">+ Добавить десерт</button>
+        </div>
+
+        <form id="dessert-form" class="admin-form card-bakery" hidden>
+          <h3 class="admin-form__title" id="dessert-form-title">Новый десерт</h3>
+          <input type="hidden" id="dessert-id" name="id" value="">
+          <div class="admin-form__grid">
+            <div class="form-group">
+              <label for="dessert-name">Название</label>
+              <input type="text" id="dessert-name" name="name" required placeholder="Например, Медовик">
+            </div>
+            <div class="form-group">
+              <label for="dessert-price">Цена</label>
+              <input type="text" id="dessert-price" name="price" required placeholder="1 200 ₽">
+            </div>
+            <div class="form-group admin-form__full">
+              <label for="dessert-description">Описание</label>
+              <textarea id="dessert-description" name="description" rows="2" placeholder="Короткое описание вкуса и состава"></textarea>
+            </div>
+            <div class="form-group admin-form__full">
+              <label for="dessert-image">Путь к фото или URL</label>
+              <input type="text" id="dessert-image" name="image" placeholder="images/medovik.jpg">
+            </div>
+            <div class="form-group admin-form__full">
+              <label for="dessert-file">Или загрузить фото с компьютера</label>
+              <input type="file" id="dessert-file" accept="image/*">
+              <p class="admin-form__note">Файл сохранится в браузере (подходит для демо и локальной работы).</p>
+            </div>
+            <div class="admin-form__preview" id="dessert-preview" hidden>
+              <img src="" alt="Превью десерта" id="dessert-preview-img">
+            </div>
+          </div>
+          <div class="admin-form__actions">
+            <button type="submit" class="btn-primary">Сохранить</button>
+            <button type="button" class="btn-outline" id="dessert-cancel-btn">Отмена</button>
+          </div>
+        </form>
+
+        <div id="admin-catalog-list" class="admin-catalog"></div>
+        <p class="admin-empty" id="catalog-empty" hidden>Каталог пуст — добавьте первый десерт.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
